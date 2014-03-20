@@ -1,0 +1,53 @@
+﻿<Window x:Class="rmsis_reporter_project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RMSIS Reporter" Height="350" Width="525" Loaded="Window_Loaded">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Options"/>
+                <MenuItem Header="Exit" Click="MenuItem_Click_2"/>
+            </MenuItem>
+            <MenuItem Header="?"/>
+        </Menu>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="25px" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+       
+            <Label Grid.Row="0" Grid.Column="0" Margin="3">Projects</Label>
+            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Name="ProjectComboBox" Margin="3"
+                      ItemsSource="{Binding Path=ProjectData}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="Name"
+                      SelectedValue="{Binding Path=Project}" Initialized="ProjectComboBox_Initialized" Loaded="ProjectComboBox_Loaded"/>
+            <Label Grid.Row="1" Grid.Column="0" Margin="3">Baseline</Label>
+            <ComboBox Grid.Row="1" Grid.Column="1" Name="BaseLineComboBox" Margin="3" Grid.ColumnSpan="3"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Margin="3">Template</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Width="200" Name="WordTemplateFilename" Margin="3" Loaded="WordTemplateFilename_Loaded"></TextBox>
+            <Button Grid.Row="2" Grid.Column="2" Margin="3" Click="MenuItem_Click_1">Select</Button>
+            <Button Grid.Row="2" Grid.Column="3"  Margin="3" Click="ViewTemplateDoc">View</Button>
+            
+            <RadioButton Name="rb1" Grid.Row="3" Grid.Column="0" Margin="3" IsChecked="True">Microsoft Word</RadioButton>
+            <RadioButton Name="rb2" Grid.Row="3" Grid.Column="2" Margin="3">Microsoft Excel</RadioButton>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="3">Location</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="LocationTextBox" Margin="3" Grid.ColumnSpan="3" Loaded="LocationTextBox_Loaded"/>
+            
+            <Button Grid.Row="6" Grid.Column="1" Margin="3" Click="ButtonGenerateReport">Generate Report</Button>
+        </Grid>
+    </DockPanel>
+</Window>
